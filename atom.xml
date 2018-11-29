@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>博客</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2018-11-29T12:48:51.305Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>王政</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>git学习</title>
+    <link href="http://yoursite.com/2018/11/29/git%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://yoursite.com/2018/11/29/git学习/</id>
+    <published>2018-11-29T04:52:24.000Z</published>
+    <updated>2018-11-29T12:48:51.305Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="git优势"><a href="#git优势" class="headerlink" title="git优势"></a>git优势</h2><p>git能大幅提高工作效率</p><ol><li>记录每次代码变更的内容和时间点，如果代码丢失或崩溃，可以快速回复到之前任意时间点版本。</li><li>多人协作。如果代码冲突可以直观看到并解决。合并多人代码时较方便。</li></ol><h2 id="学习建议"><a href="#学习建议" class="headerlink" title="学习建议"></a>学习建议</h2><ol><li>理解 本地、暂存区、提交、远程仓库。</li><li>先学基本命令，随着项目慢慢熟练。先不要看高级命令，因为几乎用不到。</li></ol><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol><li>廖雪峰git教程点<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">这里</a></li><li>玩游戏学git点<a href="https://learngitbranching.js.org/" target="_blank" rel="noopener">这里</a></li></ol><h1 id="git基本命令"><a href="#git基本命令" class="headerlink" title="git基本命令"></a>git基本命令</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>在项目文件夹根目录下右键git bash</p><p>git init  。初始化本地仓库git，会看到项目文件夹下生成.git隐藏文件夹，这个文件夹会记录以后每次的更改和提交</p><p><img src="git学习/2.png" alt=""></p><p><img src="git学习/1.png" alt=""></p><p>git config –global user.name  第一次使用git配置初始化用户名</p><p>git config –global user.email 配置邮箱</p><h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><p>git add 文件名 。跟踪一个文件。例如git add 1.py</p><p>git add .   。跟踪当前文件夹下所有文件</p><p>git merge 副分支。合并分支内容到当前分支</p><p>git log   查看记录</p><p>git reset –hard 提交记录的id  还原到此id时候的状态。</p><h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><ol><li>(<em>newfeature)git add .   git commit -m “”</em></li><li><em>(</em>newfeature)git checkout master</li><li>(*marster)git merge newferture  这样就会把新分支合并到主分支下。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;git优势&quot;&gt;&lt;a href=&quot;#git优势&quot; class=&quot;headerlink&quot; title=&quot;git优势&quot;&gt;&lt;/a&gt;git优势&lt;/h2&gt;&lt;p&gt;git能大幅提高工作效率&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;记录每次代码变更的内容和时间点，如果代码丢失或崩溃，可以快速回复
+      
+    
+    </summary>
+    
+      <category term="工具" scheme="http://yoursite.com/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hello my blog</title>
+    <link href="http://yoursite.com/2018/11/27/hello-python/"/>
+    <id>http://yoursite.com/2018/11/27/hello-python/</id>
+    <published>2018-11-27T12:55:48.000Z</published>
+    <updated>2018-11-28T14:29:27.895Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="2018-11-28-22-26"><a href="#2018-11-28-22-26" class="headerlink" title="2018-11-28 22:26"></a>2018-11-28 22:26</h2><p>博客终于搭建好，耗费2个晚上的时间。<br>眼花缭乱，头昏脑涨。<br>功夫不负有心人。<br>终于弄好，虽然不难，但是巨麻烦。<br>记录下这个时间点。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;2018-11-28-22-26&quot;&gt;&lt;a href=&quot;#2018-11-28-22-26&quot; class=&quot;headerlink&quot; title=&quot;2018-11-28 22:26&quot;&gt;&lt;/a&gt;2018-11-28 22:26&lt;/h2&gt;&lt;p&gt;博客终于搭建好，耗费2个晚上
+      
+    
+    </summary>
+    
+      <category term="test" scheme="http://yoursite.com/categories/test/"/>
+    
+    
+      <category term="test blog" scheme="http://yoursite.com/tags/test-blog/"/>
+    
+      <category term="hexo is great" scheme="http://yoursite.com/tags/hexo-is-great/"/>
+    
+  </entry>
+  
+</feed>
