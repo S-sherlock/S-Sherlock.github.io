@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="test blog,hexo is great,">
+  <meta name="keywords" content="基础，python，类,">
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="2018-11-28 22:26博客终于搭建好，耗费2个晚上的时间。眼花缭乱，头昏脑涨。功夫不负有心人。终于弄好，虽然不难，但是巨麻烦。记录下这个时间点。">
-<meta name="keywords" content="test blog,hexo is great">
+<meta name="description" content="初识类和对象引题：回忆之前没有函数时的写法，有函数封装之后的写法。  单条语句  1234567# 设置三个圆的半径 求面积r1 = 3r2 = 4r3 = 5.5print(&apos;圆的面积：&apos;, r1*r1*3.14)print(&apos;圆的面积：&apos;, r2*r2*3.14)print(&apos;圆的面积：&apos;, r3*r3*3.14)  函数   封装功能，抽象出解决问题的公共过程。调用时传入参数。  12345">
+<meta name="keywords" content="基础，python，类">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hello my blog">
-<meta property="og:url" content="http://yoursite.com/2018/11/27/hello-python/index.html">
+<meta property="og:title" content="类和对象">
+<meta property="og:url" content="http://yoursite.com/2018/11/30/类和对象/index.html">
 <meta property="og:site_name" content="博客">
-<meta property="og:description" content="2018-11-28 22:26博客终于搭建好，耗费2个晚上的时间。眼花缭乱，头昏脑涨。功夫不负有心人。终于弄好，虽然不难，但是巨麻烦。记录下这个时间点。">
+<meta property="og:description" content="初识类和对象引题：回忆之前没有函数时的写法，有函数封装之后的写法。  单条语句  1234567# 设置三个圆的半径 求面积r1 = 3r2 = 4r3 = 5.5print(&apos;圆的面积：&apos;, r1*r1*3.14)print(&apos;圆的面积：&apos;, r2*r2*3.14)print(&apos;圆的面积：&apos;, r3*r3*3.14)  函数   封装功能，抽象出解决问题的公共过程。调用时传入参数。  12345">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-28T14:29:27.895Z">
+<meta property="og:updated_time" content="2018-11-30T12:12:43.199Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hello my blog">
-<meta name="twitter:description" content="2018-11-28 22:26博客终于搭建好，耗费2个晚上的时间。眼花缭乱，头昏脑涨。功夫不负有心人。终于弄好，虽然不难，但是巨麻烦。记录下这个时间点。">
+<meta name="twitter:title" content="类和对象">
+<meta name="twitter:description" content="初识类和对象引题：回忆之前没有函数时的写法，有函数封装之后的写法。  单条语句  1234567# 设置三个圆的半径 求面积r1 = 3r2 = 4r3 = 5.5print(&apos;圆的面积：&apos;, r1*r1*3.14)print(&apos;圆的面积：&apos;, r2*r2*3.14)print(&apos;圆的面积：&apos;, r3*r3*3.14)  函数   封装功能，抽象出解决问题的公共过程。调用时传入参数。  12345">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/27/hello-python/">
+  <link rel="canonical" href="http://yoursite.com/2018/11/30/类和对象/">
 
 
 
 
 
-  <title>hello my blog | 博客</title>
+  <title>类和对象 | 博客</title>
   
 
 
@@ -256,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/27/hello-python/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/30/类和对象/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王政">
@@ -273,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">hello my blog</h1>
+          <h1 class="post-title" itemprop="name headline">类和对象</h1>
         
 
         <div class="post-meta">
@@ -285,8 +285,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-27T20:55:48+08:00">
-                2018-11-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-30T19:12:51+08:00">
+                2018-11-30
               </time>
             
 
@@ -308,8 +308,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/test/" itemprop="url" rel="index">
-                    <span itemprop="name">test</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
 
@@ -345,7 +345,24 @@
       
 
       
-        <h2 id="2018-11-28-22-26"><a href="#2018-11-28-22-26" class="headerlink" title="2018-11-28 22:26"></a>2018-11-28 22:26</h2><p>博客终于搭建好，耗费2个晚上的时间。<br>眼花缭乱，头昏脑涨。<br>功夫不负有心人。<br>终于弄好，虽然不难，但是巨麻烦。<br>记录下这个时间点。</p>
+        <h2 id="初识类和对象"><a href="#初识类和对象" class="headerlink" title="初识类和对象"></a>初识类和对象</h2><p><strong>引题</strong>：回忆之前没有函数时的写法，有函数封装之后的写法。</p>
+<ol>
+<li>单条语句</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置三个圆的半径 求面积</span></span><br><span class="line">r1 = <span class="number">3</span></span><br><span class="line">r2 = <span class="number">4</span></span><br><span class="line">r3 = <span class="number">5.5</span></span><br><span class="line">print(<span class="string">'圆的面积：'</span>, r1*r1*<span class="number">3.14</span>)</span><br><span class="line">print(<span class="string">'圆的面积：'</span>, r2*r2*<span class="number">3.14</span>)</span><br><span class="line">print(<span class="string">'圆的面积：'</span>, r3*r3*<span class="number">3.14</span>)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>函数   封装功能，抽象出解决问题的公共过程。调用时传入参数。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calculate_area</span><span class="params">(r)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> r*r*<span class="number">3.14</span></span><br><span class="line">calulate_area(r1)</span><br><span class="line">calulate_area(r2)</span><br><span class="line">calulate_area(r3)</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>类，面向对象</li>
+</ol>
+<p>这里建一个学生的类</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># __init__() 是初始化函数，定义初始化的值，不需要手动调用。</span></span><br><span class="line">    <span class="comment"># 初始化函数会先调用</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, score ,sex)</span>:</span></span><br><span class="line">        <span class="comment"># 等号右侧的name是__init__()函数执行时传过来的参数</span></span><br><span class="line">        <span class="comment"># 变量的名字前面加上self.可以理解为能够在这个类里全局调用</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.score = score</span><br><span class="line">        self.sex = sex</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 在类中定义一个函数</span></span><br><span class="line">    <span class="comment"># 类中函数的第一个参数必须是固定的self</span></span><br><span class="line">    <span class="comment"># self由解释器自动传参，self后面是自定义参数</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">print_score</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'&#123;&#125;的成绩是&#123;&#125;'</span>.format(self.name, self.score))</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">print_sex</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'&#123;&#125;的性别是&#123;&#125;'</span>.format(self.name, self.sex))</span><br></pre></td></tr></table></figure>
+<p>函数写好了，具体的意思都写在代码注释里了。写好了但是还没完 ，我们必须要调用对象方法.接着上面的代码写。注意这里！调用和实例化的代码缩进要和上面类一样。也就是顶格写。！！！</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 实例化，通俗一点的说是把括号内的参数传到Student类里面。</span></span><br><span class="line"><span class="comment"># 并且他们被__init__()函数所调用。</span></span><br><span class="line">stu1 = Student(<span class="string">'小明'</span>, <span class="number">90</span>, <span class="string">'男'</span>)</span><br><span class="line">stu2 = Student(<span class="string">'小红'</span>, <span class="number">80</span>, <span class="string">'女'</span>)</span><br><span class="line"><span class="comment"># 调用对象方法</span></span><br><span class="line">print(stu1.name) <span class="comment"># 这里可以打印一下看看会输出什么。</span></span><br><span class="line">stu1.print_score()</span><br><span class="line">stu2.print_sex()</span><br></pre></td></tr></table></figure>
+<p>类class和实例instance（重点）：“人类”和“小明”。类是许多个体的集合，一个抽象名词、统称。’小明’或者 “你自己” 或“特普朗” 这些都是人类这个集合中一个个具体的人、个体。那么我们把类中具体的个体叫“对象”、“实例”。  再举几个例子：水果类包含苹果、梨。 电子产品类，电脑，手机。 手机类，苹果，华为。<br>属性attribute，成员方法：一类事物的特性叫做属性，例如Student类中的name、score、sex。类中个体、成员具备的功能、方法叫做成员方法。</p>
+<p>语法：类关键字class  类名()： 类方法。<br>驼峰命名：（约定俗成）每一个单词挨着写并且首字母大写。例如：ElectronicProduct。java中常见。</p>
 
       
     </div>
@@ -363,9 +380,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/test-blog/" rel="tag"><i class="fa fa-tag"></i> test blog</a>
-          
-            <a href="/tags/hexo-is-great/" rel="tag"><i class="fa fa-tag"></i> hexo is great</a>
+            <a href="/tags/基础，python，类/" rel="tag"><i class="fa fa-tag"></i> 基础，python，类</a>
           
         </div>
       
@@ -378,15 +393,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/11/29/git学习/" rel="next" title="git学习">
+                <i class="fa fa-chevron-left"></i> git学习
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/29/git学习/" rel="prev" title="git学习">
-                git学习 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -557,7 +572,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-11-28-22-26"><span class="nav-number">1.</span> <span class="nav-text">2018-11-28 22:26</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#初识类和对象"><span class="nav-number">1.</span> <span class="nav-text">初识类和对象</span></a></li></ol></div>
             
 
           </div>
