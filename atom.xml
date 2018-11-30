@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-11-30T12:53:47.823Z</updated>
+  <updated>2018-11-30T13:16:00.500Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>类的继承</title>
+    <link href="http://yoursite.com/2018/11/30/%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF/"/>
+    <id>http://yoursite.com/2018/11/30/类的继承/</id>
+    <published>2018-11-30T12:54:53.000Z</published>
+    <updated>2018-11-30T13:16:00.500Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>引题</strong>：生活例子。手机类，OPPO手机类、华为手机类看做是手机类里的对象；但oppo手机也可以称作一个类，这个类下又包含find系列、R系列类，R系列类又包含某某具体型号对象。类有包含、继承的关系。</p><p>首先我们写两个类</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age, sex, salary, subject, address)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line">        self.sex = sex</span><br><span class="line">        self.salary = salary</span><br><span class="line">        self.subject = subject</span><br><span class="line">        self.address = address</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">say_hi</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'hello'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">go_work</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age, sex, hobby, parent_info)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line">        self.sex = sex</span><br><span class="line">        self.hobby = hobby</span><br><span class="line">        self.parent_info = parent_info</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">say_hi</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'hello'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">go_class</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure><p>可以看得出来上面的代码类与相似的类有重复的属性和方法，书写麻烦。</p><p>所以python引入了类继承机制，继承是类的三大特性之一。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span><span class="params">(object)</span>:</span>  <span class="comment"># 动物类</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'动物在跑'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 狗狗类 是动物类的子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span><span class="params">(Animal)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">swim</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'狗会游泳'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 猫咪类 也是动物类的子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span><span class="params">(Animal)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">crawl_tree</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'猫会爬树'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'猫灵活地跑'</span>)</span><br><span class="line"></span><br><span class="line">dog1 = Dog(<span class="string">'阿黄'</span>)</span><br><span class="line">dog1.run()</span><br><span class="line">dog1.swim()</span><br><span class="line">cat1 = Cat(<span class="string">'小花'</span>)</span><br><span class="line">cat1.run()</span><br><span class="line">cat1.crawl_tree()</span><br></pre></td></tr></table></figure><p>代码的最后<code>dog1.run()</code>执行以后发现打印出来的是’动物在跑’，而run()函数是动物类中的函数。这说明子类继承父类所有的属性、方法: Dog类实例化用的是父类Animal类中的<strong>init</strong>() 和run()。</p><hr>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;引题&lt;/strong&gt;：生活例子。手机类，OPPO手机类、华为手机类看做是手机类里的对象；但oppo手机也可以称作一个类，这个类下又包含find系列、R系列类，R系列类又包含某某具体型号对象。类有包含、继承的关系。&lt;/p&gt;
+&lt;p&gt;首先我们写两个类&lt;/p&gt;
+&lt;
+      
+    
+    </summary>
+    
+      <category term="python" scheme="http://yoursite.com/categories/python/"/>
+    
+    
+      <category term="基础" scheme="http://yoursite.com/tags/%E5%9F%BA%E7%A1%80/"/>
+    
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+      <category term="类" scheme="http://yoursite.com/tags/%E7%B1%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>类和对象</title>
