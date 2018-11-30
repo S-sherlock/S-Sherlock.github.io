@@ -92,7 +92,13 @@
 <meta property="og:image" content="http://yoursite.com/2018/11/29/git学习/2.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/29/git学习/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/29/git学习/3.png">
-<meta property="og:updated_time" content="2018-11-29T13:31:20.217Z">
+<meta property="og:image" content="http://yoursite.com/2018/11/29/git学习/C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/1543569457355.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/29/git学习/C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/1543569621045.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/29/git学习/C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/1543569959805.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/29/git学习/C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/1543570098290.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/29/git学习/C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/1543570210233.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/29/git学习/C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/1543570385627.png">
+<meta property="og:updated_time" content="2018-11-30T09:36:06.346Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git学习">
 <meta name="twitter:description" content="git优势git能大幅提高工作效率  记录每次代码变更的内容和时间点，如果代码丢失或崩溃，可以快速回复到之前任意时间点版本。 多人协作。如果代码冲突可以直观看到并解决。合并多人代码时较方便。  学习建议 理解 本地、暂存区、提交、远程仓库。 先学基本命令，随着项目慢慢熟练。先不要看高级命令，因为几乎用不到。  参考资料 廖雪峰git教程点这里 玩游戏学git点这里  git基本命令准备工作在项目文">
@@ -373,7 +379,22 @@
 <p>git add .   。跟踪当前文件夹下所有文件</p>
 <p>git merge 副分支。合并分支内容到当前分支</p>
 <p>git log   查看记录</p>
-<p>git reset –hard 提交记录的id  还原到此id时候的状态。</p>
+<p>git reset –hard 提交记录的id  还原到此id时候的状态。\</p>
+<p>git clone ssh链接 。 远程仓库克隆到自己本地的电脑上。这里以github为例。</p>
+<p>点击右上角绿色方块  点击your repositories</p>
+<p><img src="/2018/11/29/git学习/C:/Users\Administrator\AppData\Roaming\Typora\typora-user-images\1543569457355.png" alt="1543569457355"></p>
+<p>进入到你要克隆的仓库</p>
+<p><img src="/2018/11/29/git学习/C:/Users\Administrator\AppData\Roaming\Typora\typora-user-images\1543569621045.png" alt="1543569621045"></p>
+<p>点击右侧clone or download，出来默认是http格式的，下面的链接也是http开头的。但是我们需要的是ssh格式的，所以我们点击use ssh。</p>
+<p><img src="/2018/11/29/git学习/C:/Users\Administrator\AppData\Roaming\Typora\typora-user-images\1543569959805.png" alt="1543569959805"></p>
+<p>点击之后链接变成了ssh格式。然后选中ctrl+c复制  或者点击箭头指着的按钮都行。</p>
+<p><img src="/2018/11/29/git学习/C:/Users\Administrator\AppData\Roaming\Typora\typora-user-images\1543570098290.png" alt="1543570098290"></p>
+<p>然后在你的项目文件夹下邮件点击git bash 打开命令窗口 。在这个命令窗口中把链接粘贴过去就行。</p>
+<p>tips小技巧，shift+insert 粘贴效果比较不错 。</p>
+<p><img src="/2018/11/29/git学习/C:/Users\Administrator\AppData\Roaming\Typora\typora-user-images\1543570210233.png" alt="1543570210233"></p>
+<p>然后会发现在项目文件夹下多了一个文件夹 就是你克隆的项目名字。到这里就成功了 。</p>
+<p><img src="/2018/11/29/git学习/C:/Users\Administrator\AppData\Roaming\Typora\typora-user-images\1543570385627.png" alt="1543570385627"></p>
+<p>git push origin  在你本地项目的文件夹下邮件git bash把本地项目提交推送到远程服务器仓库。这样当更换电脑或是本地仓库被破坏时，可以快速从远程仓库克隆回复。</p>
 <h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><ol>
 <li>(<em>newfeature)git add .   git commit -m “”</em></li>
 <li><em>(</em>newfeature)git checkout master</li>
