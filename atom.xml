@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-11-30T13:16:00.500Z</updated>
+  <updated>2018-12-01T03:34:51.318Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>包</title>
+    <link href="http://yoursite.com/2018/12/01/%E5%8C%85/"/>
+    <id>http://yoursite.com/2018/12/01/包/</id>
+    <published>2018-12-01T02:26:17.000Z</published>
+    <updated>2018-12-01T03:34:51.318Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="os包"><a href="#os包" class="headerlink" title="os包"></a>os包</h2><p>os包：operate system，主要负责新建文件，改文件名，路径，操作电脑系统相关的功能，是一个内置包。</p><p>首先在开头引入包 <code>import os</code></p><ol><li><p><code>os.path.exists()</code> 判断是否存在文件</p><p><code>print(os.path.exists(&#39;app.py&#39;))</code>  如果存在app.py则返回True</p></li><li><p><code>os.rename()</code>       重命名</p><p><code>os.rename(&#39;aaa.txt&#39;, &#39;bbb.txt&#39;)</code>前者是老名字，后者是改过后的新名字。</p></li><li><p><code>os.remove()</code>      删除文件，括号内为文件名</p></li><li><code>os.mkdir()</code>         新建文件夹 ，括号内是文件夹名字</li><li><code>os.listdir()</code>     列出当前文件夹下的文件</li><li><code>os.chdir()</code>         切换当前文件夹</li><li><p><code>os.getcwd()</code>       获取当前py所在的文件夹。</p></li><li><p><code>os.path.join(&#39;d:/python课件/os包/&#39;,&#39;me.txt&#39;)</code> 拼接文件路径</p></li></ol><p>这部分知识不难，但是内容很繁杂，没必要刻意去记。用的时候翻出来会用就行。</p><hr><h2 id="time包和datetime包"><a href="#time包和datetime包" class="headerlink" title="time包和datetime包"></a>time包和datetime包</h2><p>time包和datetime包都是时间处理的包</p><h3 id="datetime包"><a href="#datetime包" class="headerlink" title="datetime包"></a>datetime包</h3><p>首先在开头引入包</p><p><code>from datetime import datetime,timedelta</code></p><ol><li><p><code>datetime.now()</code>返回当前时间，字符串，方便进行日期加减等处理。这里的datetime是import后面的datetime。如果开头引入的时候写成<code>import datetime</code>，那这个就应该写成<code>datetime.datetime.now()</code>然后再打印出来。</p></li><li><p>创建datetime对象</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dt = datetime(<span class="number">2018</span>,<span class="number">12</span>,<span class="number">1</span>,<span class="number">10</span>,<span class="number">55</span>,<span class="number">00</span>)</span><br><span class="line">print(dt.year)</span><br><span class="line">print(dt.hour)</span><br></pre></td></tr></table></figure><p>执行完我们发现第一个打印出来是2018，第二个打印出来是10</p></li><li><p>日期加减，用于判断活动截止，定时，或者任务之类的。</p><p><code>print(datetime.now() + timedelta(days=1, hours=10))</code>打印出来发现时间是一天零十个小时之后的时间。</p></li><li><p>格式化时间输出  strftime  </p><p><code>print(datetime.now().strftime(&#39;%Y-%m-%d %H:%M:%S&#39;))</code></p><p>打印出来时间是按照小括号里的格式进行打印2018-12-01 11:03:35</p></li></ol><hr><h3 id="time包"><a href="#time包" class="headerlink" title="time包"></a>time包</h3><ol><li><p>生成时间戳 <code>time()</code>，整数形式的时间戳 timestamp：当前时间减去1970-1-4 0:0:0的秒数，把时间量化成数字，比较时间先后顺序。计算转换有优势，缺点是可读性差。默认长度只能表示到2038年。</p><p><code>print(time.time())</code> 可以试着打印出来看一下。</p></li><li><p>生成本地时间<code>time.localtime()</code></p><p>我们打印一下<code>print(time.localtime())</code> 发现打印出的结果是<strong>time.struct_time(tm_year=2018, tm_mon=12, tm_mday=1, tm_hour=11, tm_min=11, tm_sec=57, tm_wday=5, tm_yday=335, tm_isdst=0)</strong>，里面的内容什么意思我觉得能猜个大概，比如里面的yday=35 ，我猜测意思可能是今天是今年的第335天，离这一年过去还有60天。</p></li><li><p>格式化时间，time和datetime略有不同</p><p><code>print(time.strftime(&#39;%Y-%m-%d %H:%M:%S&#39;,time.localtime()))</code></p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;os包&quot;&gt;&lt;a href=&quot;#os包&quot; class=&quot;headerlink&quot; title=&quot;os包&quot;&gt;&lt;/a&gt;os包&lt;/h2&gt;&lt;p&gt;os包：operate system，主要负责新建文件，改文件名，路径，操作电脑系统相关的功能，是一个内置包。&lt;/p&gt;
+&lt;p&gt;首先在
+      
+    
+    </summary>
+    
+      <category term="python" scheme="http://yoursite.com/categories/python/"/>
+    
+    
+      <category term="基础" scheme="http://yoursite.com/tags/%E5%9F%BA%E7%A1%80/"/>
+    
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+      <category term="包" scheme="http://yoursite.com/tags/%E5%8C%85/"/>
+    
+  </entry>
   
   <entry>
     <title>类的继承</title>
