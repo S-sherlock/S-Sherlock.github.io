@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-12-10T13:00:16.889Z</updated>
+  <updated>2018-12-17T12:16:40.883Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hashlib模块</title>
+    <link href="http://yoursite.com/2018/12/17/hashlib%E6%A8%A1%E5%9D%97/"/>
+    <id>http://yoursite.com/2018/12/17/hashlib模块/</id>
+    <published>2018-12-17T11:57:49.000Z</published>
+    <updated>2018-12-17T12:16:40.883Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="哈希-hash"><a href="#哈希-hash" class="headerlink" title="哈希 hash"></a>哈希 hash</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>hash：概括摘要加密算法。一般的加密，比如a-z对应数字1-26，abc的密文为12345。而hash是“摘要”算法，不管1kb的txt文件还是几个G的视频最终都会生成一个固定长度的字符串。文件轻度修改最终摘要会大幅变化。</p><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ol><li>校验文件，保证文件不被第三方修改。确保下载文件没加入广告或恶意程序。</li><li>校验接口参数。api平台app_key和params生成sign签名，如果传输过程中有误或被中间人截取请求修改，name签名会不匹配，服务器检测到会丢弃。</li><li>字典，hash表，散列表。hash值作为键名提供快速访问。</li><li>密码加密。用户注册成功后把密码hash处理然后把摘要字符串存入数据库，用户登录时将用户提交的密码hash跟数据库中的字符串对比。</li></ol><h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><ul><li>update(): 比较大的文件如视频可以分成多块，多次调用update()。</li><li>参数为二进制，待摘要信息是字符串的话先编码。</li><li>hex digest 生成十六进制摘要字符串</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line">md5 = hashlib.md5()</span><br><span class="line">md5.update(<span class="string">'待加密的文本'</span>.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">print(md5.hexdigest())</span><br></pre></td></tr></table></figure><p>输出的加密后的字段为 ‘de8d731c2762076ffc9263f53ab25258’</p><p>如果这时候我们稍微改一个字，其加密后的字段就会发生很大变化</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line">md5 = hashlib.md5()</span><br><span class="line">md5.update(<span class="string">'等待加密的文本'</span>.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">print(md5.hexdigest())</span><br></pre></td></tr></table></figure><p>打印的结果为 ‘ dbb3a4f9055f4c7d67f6e08715894870 ‘ 。</p><h3 id="增加安全性"><a href="#增加安全性" class="headerlink" title="增加安全性"></a>增加安全性</h3><p>被攻击的手段有穷举，对撞等。hash加密并不是绝对安全。不要设置过于简单的密码。有攻击者根据弱密码字典（10万个弱密码）通过代码生成md5加密，存入一张数据库表。然后黑客会窃取网站的用户表，拿用户表的密码字段生成的密文跟自己生成的md5做比对。</p><p>方法一：加额外的字符串混淆，俗称加盐 salt</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line">salt = <span class="string">'abc'</span></span><br><span class="line">md5 = hashlib.md5()</span><br><span class="line">md5.update((<span class="string">'password'</span>+salt).encode(<span class="string">'utf-8'</span>))</span><br><span class="line">print(<span class="string">'md5'</span> + <span class="string">'$'</span> + salt + <span class="string">'$'</span> + md5.hexdigest())</span><br></pre></td></tr></table></figure><p>打印出来结果为 ‘ md5$abc$8223fe8dc0533c6ebbb717e7fda2833c  ‘</p><p>方法二：多次加密，重复调用update()函数</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line">md5 = hashlib.md5()</span><br><span class="line">md5.update(<span class="string">'password'</span>.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">str1 = md5.hexdigest()</span><br><span class="line">md5 = hashlib.md5()</span><br><span class="line">md5.update(str1.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">str2 = md5.hexdigest()</span><br><span class="line">md5 = hashlib.md5()</span><br><span class="line">md5.update(str2.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">str3 = md5.hexdigest()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初识加密字段（密文）</span></span><br><span class="line">print(str1)</span><br><span class="line"><span class="comment"># 二次加密</span></span><br><span class="line">print(str2)</span><br><span class="line"><span class="comment"># 三次加密</span></span><br><span class="line">print(str3)</span><br></pre></td></tr></table></figure><p>三次分别是：</p><p>‘ 5f4dcc3b5aa765d61d8327deb882cf99 ’<br>’ 696d29e0940a4957748fe3fc9efd22a3 ‘<br>’ 5a22e6c339c96c9c0513a46e44c39683 ‘</p><hr>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;哈希-hash&quot;&gt;&lt;a href=&quot;#哈希-hash&quot; class=&quot;headerlink&quot; title=&quot;哈希 hash&quot;&gt;&lt;/a&gt;哈希 hash&lt;/h2&gt;&lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简
+      
+    
+    </summary>
+    
+      <category term="python" scheme="http://yoursite.com/categories/python/"/>
+    
+    
+      <category term="基础" scheme="http://yoursite.com/tags/%E5%9F%BA%E7%A1%80/"/>
+    
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+      <category term="包" scheme="http://yoursite.com/tags/%E5%8C%85/"/>
+    
+  </entry>
   
   <entry>
     <title>mysql进阶语法</title>
@@ -38,9 +67,9 @@
       <category term="mysql" scheme="http://yoursite.com/categories/mysql/"/>
     
     
-      <category term="数据库" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
       <category term="mysql" scheme="http://yoursite.com/tags/mysql/"/>
+    
+      <category term="数据库" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
@@ -65,11 +94,11 @@
       <category term="数据库" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-      <category term="数据库" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <category term="基础" scheme="http://yoursite.com/tags/%E5%9F%BA%E7%A1%80/"/>
     
       <category term="mysql" scheme="http://yoursite.com/tags/mysql/"/>
     
-      <category term="基础" scheme="http://yoursite.com/tags/%E5%9F%BA%E7%A1%80/"/>
+      <category term="数据库" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
@@ -129,9 +158,9 @@
     
       <category term="基础" scheme="http://yoursite.com/tags/%E5%9F%BA%E7%A1%80/"/>
     
-      <category term="前端" scheme="http://yoursite.com/tags/%E5%89%8D%E7%AB%AF/"/>
-    
       <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+      <category term="前端" scheme="http://yoursite.com/tags/%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   
