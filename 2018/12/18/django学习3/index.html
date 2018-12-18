@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="django,web开发,web框架,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="博客" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="数据库API现在让我们进入交互式 Python 命令行，尝试一下 Django 为你创建的各种 API。通过以下命令打开 Python 命令行： py manage.py shell 我们使用这个命令而不是简单的使用 “Python” 是因为 manage.py 会设置 DJANGO_SETTINGS_MODULE 环境变量，这个变量会让 Django 根据 mysite/settings.py">
+<meta name="keywords" content="django,web开发,web框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="django学习3">
+<meta property="og:url" content="http://yoursite.com/2018/12/18/django学习3/index.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="数据库API现在让我们进入交互式 Python 命令行，尝试一下 Django 为你创建的各种 API。通过以下命令打开 Python 命令行： py manage.py shell 我们使用这个命令而不是简单的使用 “Python” 是因为 manage.py 会设置 DJANGO_SETTINGS_MODULE 环境变量，这个变量会让 Django 根据 mysite/settings.py">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://docs.djangoproject.com/zh-hans/2.1/_images/admin01.png">
+<meta property="og:image" content="https://docs.djangoproject.com/zh-hans/2.1/_images/admin02.png">
+<meta property="og:updated_time" content="2018-12-18T12:12:32.680Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="django学习3">
+<meta name="twitter:description" content="数据库API现在让我们进入交互式 Python 命令行，尝试一下 Django 为你创建的各种 API。通过以下命令打开 Python 命令行： py manage.py shell 我们使用这个命令而不是简单的使用 “Python” 是因为 manage.py 会设置 DJANGO_SETTINGS_MODULE 环境变量，这个变量会让 Django 根据 mysite/settings.py">
+<meta name="twitter:image" content="https://docs.djangoproject.com/zh-hans/2.1/_images/admin01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/18/django学习3/">
+
+
+
+
+
+  <title>django学习3 | 博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a <a="" href="https://github.com/S-sherlock"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/18/django学习3/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王政">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/abc.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">django学习3</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-18T19:15:06+08:00">
+                2018-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/django/" itemprop="url" rel="index">
+                    <span itemprop="name">django</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="数据库API"><a href="#数据库API" class="headerlink" title="数据库API"></a>数据库API</h2><p>现在让我们进入交互式 Python 命令行，尝试一下 Django 为你创建的各种 API。通过以下命令打开 Python 命令行：</p>
+<p><code>py manage.py shell</code></p>
+<p>我们使用这个命令而不是简单的使用 “Python” 是因为 manage.py 会设置 DJANGO_SETTINGS_MODULE 环境变量，这个变量会让 Django 根据 mysite/settings.py 文件来设置 Python 包的导入路径。</p>
+<p>当你成功进入命令行后，来试试 database API 吧:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span>&gt;&gt; from polls.models import Choice, Question  # 引入刚刚建的类</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> No questions are in the system yet.</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; Question.objects.all()</span><br><span class="line">&lt;QuerySet []&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> Create a new Question.</span><br><span class="line"><span class="meta">#</span> Support for time zones is enabled in the default settings file, so</span><br><span class="line"><span class="meta">#</span> Django expects a datetime with tzinfo for pub_date. Use timezone.now()</span><br><span class="line"><span class="meta">#</span> instead of datetime.datetime.now() and it will do the right thing.</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; from django.utils import timezone</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; q = Question(question_text="下周五考试吗？", pub_date=timezone.now())</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> Save the object into the database. You have to call save() explicitly.</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; q.save()</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> Now it has an ID.</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; q.id</span><br><span class="line">1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> Access model field values via Python attributes.</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; q.question_text</span><br><span class="line">"下周五考试吗？"</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; q.pub_date</span><br><span class="line">datetime.datetime(2012, 2, 26, 13, 0, 0, 775217, tzinfo=&lt;UTC&gt;)</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 重新赋值.</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; q.question_text = "什么时候考试?"</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; q.save()</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; q.question_text</span><br><span class="line">"什么时候考试？"</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> objects.all() displays all the questions in the database.</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; Question.objects.all()</span><br><span class="line">&lt;QuerySet [&lt;Question: Question object (1)&gt;]&gt;</span><br></pre></td></tr></table></figure>
+<p>&lt;Question: Question object (1)&gt; 对于我们了解这个对象的细节没什么帮助。让我们通过编辑 Question 模型的代码（位于 polls/models.py 中）来修复这个问题。给 Question 和 Choice 增加 <code>__str__()</code>方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Question</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    question_text = models.CharField(max_length=<span class="number">200</span>)</span><br><span class="line">    pub_date = models.DateTimeField(<span class="string">'发布时间'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span>   <span class="comment"># (了解)控制打印对象时的输出信息</span></span><br><span class="line">        <span class="keyword">return</span> self.question_text</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Choice</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    question = models.ForeignKey(Question, on_delete=models.CASCADE)</span><br><span class="line">    choice_text = models.CharField(<span class="string">'选项内容'</span>, max_length=<span class="number">200</span>)</span><br><span class="line">    votes = models.IntegerField(<span class="string">'投票数'</span>, default=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.choice_text</span><br></pre></td></tr></table></figure>
+<p>注意：这些都是常规的 Python方法。让我们添加一个自定义的方法，这只是为了演示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> django.utils <span class="keyword">import</span> timezone</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Question</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">was_published_recently</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.pub_date &gt;= timezone.now() - datetime.timedelta(days=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>在question类下添加一个was_publish_recently函数。</p>
+<p>新加入的 import datetime 和 from django.utils import timezone 分别导入了 Python 的标准 datetime 模块和 Django 中和时区相关的 django.utils.timezone 工具模块。</p>
+<p>Django提供了一个完全由关键字参数驱动的丰富的数据库查询API（带条件查询）:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> get查询不到会报异常，filter查询不到返回空结果集</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; Question.objects.filter(id=1)</span><br><span class="line">&lt;QuerySet [&lt;Question: 下周五考试吗？&gt;]&gt;</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; Question.objects.get(id=1)</span><br><span class="line">&lt;Question: 下周五考试吗？&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 下面的查找与Question.objects.get(id=1)结果一样</span><br><span class="line">Question.objects.get(pk=1)</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 请求一个不存在的ID，会出现错误。</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; Question.objects.get(id=9999)</span><br><span class="line">会抛出一些错误栈</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 确认我们自定义的方法有效</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; q = Question.objects.get(pk=1)</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; q.was_published_recently()</span><br><span class="line">→True</span><br></pre></td></tr></table></figure>
+<p>以什么开头（模糊匹配）<br>类名.object.filter(字段__startswith=’匹配的字符串’)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span>&gt;&gt; Question.objects.filter(question_text__startswith='什么')</span><br><span class="line">&lt;QuerySet [&lt;Question: 下周五考试吗？&gt;]&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>反向查询</strong></p>
+<p>需求，查询question表中“下周五考试吗？”这个问题对应的选项，如果是sql，要先select id from question表where text=“下周”得到q的id，再select * from choice where question_id=q的id ，而orm帮我们只需要q.关联表_set.all()。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 先把一方的表的一行数据get出来，</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; question = Question.objects.get(id=1)`</span><br><span class="line">然后反向查询关联创建</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; question.choice_set.create(choice_text="周三考", votes=0)`</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; question.choice_set.create(choice_text="考试", votes=0)`</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; question.choice_set.all()</span><br><span class="line">&lt;QuerySet [&lt;Choice: 考试&gt;, &lt;Choice: 周三考&gt;]&gt;</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; question.choice_set.count()</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+<p>删除</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 删除</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; c = q.choice_set.filter(choice_text__startswith='xxx')</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; c.delete()</span><br></pre></td></tr></table></figure>
+<h2 id="django管理页面"><a href="#django管理页面" class="headerlink" title="django管理页面"></a>django管理页面</h2><p>Django全自动的根据模型创建了后台管理页面，让你的增删改查更方便</p>
+<p>管理界面是为网站管理员使用的。</p>
+<h3 id="创建管理员账号"><a href="#创建管理员账号" class="headerlink" title="创建管理员账号"></a>创建管理员账号</h3><p>首先，我们得创建一个能登录管理页面的用户。请运行下面的命令：</p>
+<p><code>py manage.py createsuperuser</code></p>
+<p>键入你想要使用的用户名，然后按下回车键：</p>
+<p><code>Username: admin</code></p>
+<p>然后提示你输入想要使用的邮件地址：</p>
+<p><code>Email address: ***@***.com</code></p>
+<p>最后一步是输入密码。你会被要求输入两次密码，第二次的目的是为了确认第一次输入的确实是你想要的密码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Password: **********</span><br><span class="line">Password (again): *********</span><br><span class="line">Superuser created successfully.</span><br></pre></td></tr></table></figure>
+<h3 id="启动开发服务器"><a href="#启动开发服务器" class="headerlink" title="启动开发服务器"></a>启动开发服务器</h3><p>Django 的管理界面默认就是启用的。让我们启动开发服务器，看看它到底是什么样的。</p>
+<p>如果开发服务器未启动，用以下命令启动它：</p>
+<p><code>py manage.py runserver</code></p>
+<p>现在，打开浏览器，转到你本地域名的 “/admin/“ 目录， – 比如 “<a href="http://127.0.0.1:8000/admin/&quot;" target="_blank" rel="noopener">http://127.0.0.1:8000/admin/&quot;</a> 。你应该会看见管理员登录界面：</p>
+<p><img src="https://docs.djangoproject.com/zh-hans/2.1/_images/admin01.png" alt=""></p>
+<h3 id="进入管理站点页面"><a href="#进入管理站点页面" class="headerlink" title="进入管理站点页面"></a>进入管理站点页面</h3><p>现在，试着使用你在上一步中创建的超级用户来登录。然后你将会看到 Django 管理页面的索引页：</p>
+<p><img src="https://docs.djangoproject.com/zh-hans/2.1/_images/admin02.png" alt=""></p>
+<h3 id="向管理页面中加入投票应用"><a href="#向管理页面中加入投票应用" class="headerlink" title="向管理页面中加入投票应用"></a>向管理页面中加入投票应用</h3><p>但是我们的投票应用在哪呢？它没在索引页面里显示。</p>
+<p>打开 polls/admin.py 文件，把它编辑成下面这样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question, Choice</span><br><span class="line"></span><br><span class="line">admin.site.register(Question)</span><br><span class="line">admin.site.register(Choice)</span><br></pre></td></tr></table></figure>
+<p>然后打开管理页面看看效果吧。</p>
+<hr>
+<p><strong>参考</strong></p>
+<p><a href="https://www.djangoproject.com/" target="_blank" rel="noopener">django官方文档</a></p>
+<p><a href="https://forali.club/" target="_blank" rel="noopener">余某人的博客</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/django/" rel="tag"><i class="fa fa-tag"></i> django</a>
+          
+            <a href="/tags/web开发/" rel="tag"><i class="fa fa-tag"></i> web开发</a>
+          
+            <a href="/tags/web框架/" rel="tag"><i class="fa fa-tag"></i> web框架</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/18/django学习2/" rel="next" title="django学习2">
+                <i class="fa fa-chevron-left"></i> django学习2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/abc.jpg" alt="王政">
+            
+              <p class="site-author-name" itemprop="name">王政</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="260641084" target="_blank" title="qq">
+                      
+                        <i class="fa fa-fw fa-qq"></i>qq</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="260641084@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hexo.io/zh-cn/" title="hexo" target="_blank">hexo</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库API"><span class="nav-number">1.</span> <span class="nav-text">数据库API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#django管理页面"><span class="nav-number">2.</span> <span class="nav-text">django管理页面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建管理员账号"><span class="nav-number">2.1.</span> <span class="nav-text">创建管理员账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动开发服务器"><span class="nav-number">2.2.</span> <span class="nav-text">启动开发服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进入管理站点页面"><span class="nav-number">2.3.</span> <span class="nav-text">进入管理站点页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#向管理页面中加入投票应用"><span class="nav-number">2.4.</span> <span class="nav-text">向管理页面中加入投票应用</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+  <div class="powered-by">python是世界上最好的语言</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">S-sherlock &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next"></a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
