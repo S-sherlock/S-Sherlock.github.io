@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="解析网页,爬虫,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="博客" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="BeautifuleSoupbs包把html按照节点的层级关系转换为树形文档，然后解析，简单易用 beautifulSoup是一个第三方库 它是从html文件或xml文件里提取数据的库 安装pip install beautifulsoup4 ，beautifulsoup只能用于python2 语法1234567891011from bs4 import BeautifulSouphtml = &quot;">
+<meta name="keywords" content="解析网页,爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Xpath和BeautifuleSoup">
+<meta property="og:url" content="http://yoursite.com/2018/12/20/Xpath和BeautifuleSoup/index.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="BeautifuleSoupbs包把html按照节点的层级关系转换为树形文档，然后解析，简单易用 beautifulSoup是一个第三方库 它是从html文件或xml文件里提取数据的库 安装pip install beautifulsoup4 ，beautifulsoup只能用于python2 语法1234567891011from bs4 import BeautifulSouphtml = &quot;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-20T11:16:31.294Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Xpath和BeautifuleSoup">
+<meta name="twitter:description" content="BeautifuleSoupbs包把html按照节点的层级关系转换为树形文档，然后解析，简单易用 beautifulSoup是一个第三方库 它是从html文件或xml文件里提取数据的库 安装pip install beautifulsoup4 ，beautifulsoup只能用于python2 语法1234567891011from bs4 import BeautifulSouphtml = &quot;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/20/Xpath和BeautifuleSoup/">
+
+
+
+
+
+  <title>Xpath和BeautifuleSoup | 博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a <a="" href="https://github.com/S-sherlock"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/20/Xpath和BeautifuleSoup/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王政">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/abc.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Xpath和BeautifuleSoup</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-20T17:31:59+08:00">
+                2018-12-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/爬虫/" itemprop="url" rel="index">
+                    <span itemprop="name">爬虫</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="BeautifuleSoup"><a href="#BeautifuleSoup" class="headerlink" title="BeautifuleSoup"></a>BeautifuleSoup</h2><p>bs包把html按照节点的层级关系转换为树形文档，然后<strong>解析</strong>，简单易用</p>
+<p>beautifulSoup是一个第三方库</p>
+<p>它是从html文件或xml文件里提取数据的库</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><code>pip install beautifulsoup4</code> ，beautifulsoup只能用于python2</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line">html = <span class="string">"""</span></span><br><span class="line"><span class="string">&lt;html&gt;</span></span><br><span class="line"><span class="string">    &lt;body&gt;</span></span><br><span class="line"><span class="string">        &lt;a id="aaa" href="http://www.baidu.com" name="aaa" class="aaa"&gt;百度一下&lt;/a&gt;</span></span><br><span class="line"><span class="string">        &lt;a href="http://www.baidu.com"&gt;百度一下2&lt;/a&gt;</span></span><br><span class="line"><span class="string">        &lt;h1&gt;大家好&lt;/h1&gt;</span></span><br><span class="line"><span class="string">    &lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+<p>首先引入 ，然后写一个简单的html。</p>
+<p>html.parser  python内置，方便兼容性好。lxml基于c，效率较高。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bs = BeautifulSoup(html, 'html.parser')</span></span><br><span class="line">bs = BeautifulSoup(html, <span class="string">'lxml'</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>重要且常用</strong>的语法：</p>
+<ol>
+<li>find_all()，以列表的形式返回，括号内参数是标签名。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">print(bs.find_all(<span class="string">'a'</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt;&gt;&gt; 打印出来结果如下</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string"> [&lt;a class="aaa" href="http://www.baidu.com" id="aaa" name="aaa"&gt;百度一下&lt;/a&gt;, &lt;a href="http://www.baidu.com"&gt;百度一下2&lt;/a&gt;]</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(bs.find_all([<span class="string">'a'</span>, <span class="string">'h1'</span>]))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt;&gt;&gt; 打印结果如下</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">[&lt;a class="aaa" href="http://www.baidu.com" id="aaa" name="aaa"&gt;百度一下&lt;/a&gt;, &lt;a href="http://www.baidu.com"&gt;百度一下2&lt;/a&gt;, &lt;h1&gt;大家好&lt;/h1&gt;]</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>根据标签属性查找</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">print(bs.a[<span class="string">'href'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt;&gt;&gt; 打印结果</span></span><br><span class="line"><span class="comment"># http://www.baidu.com</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(bs.find(id=<span class="string">'aaa'</span>))</span><br><span class="line"><span class="comment"># &gt;&gt;&gt; 打印结果</span></span><br><span class="line"><span class="comment"># &lt;a class="aaa" href="http://www.baidu.com" id="aaa" name="aaa"&gt;百度一下&lt;/a&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(bs.find(class_=<span class="string">'aaa'</span>))</span><br><span class="line"><span class="comment"># &gt;&gt;&gt; 打印结果</span></span><br><span class="line"><span class="comment"># &lt;a class="aaa" href="http://www.baidu.com" id="aaa" name="aaa"&gt;百度一下&lt;/a&gt;</span></span><br></pre></td></tr></table></figure>
+<p>因为class是在python中是关键字，所以在class后面加个下划线。</p>
+<p>标签名.string，取出标签里的文本内容，如果该标签还有子标签，得到的是None</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(bs.a.string)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt;&gt;&gt; 打印结果</span></span><br><span class="line"><span class="comment"># 百度一下</span></span><br></pre></td></tr></table></figure>
+<p>bs.标签名.attrs 获取标签的所有属性</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(bs.a.attrs)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt;&gt;&gt; 打印结果</span></span><br><span class="line"><span class="comment"># &#123;'id': 'aaa', 'href': 'http://www.baidu.com', 'name': 'aaa', 'class': ['aaa']&#125;</span></span><br></pre></td></tr></table></figure>
+<p><strong>其他不常用</strong></p>
+<ul>
+<li><code>print(bs.prettify())</code> 格式化输出网页内容</li>
+<li><code>del bs.a[&#39;id&#39;]</code> 删除标签里的属性，此行代码是把id属性删除</li>
+<li><code>print(bs.body.contents)</code> 可以将标签的节点以列表的形式输出</li>
+</ul>
+<p>获取body的子节点，并且第一行输出的是一个可迭代的对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">print(bs.body.children)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> bs.body.children:</span><br><span class="line">    print(i)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 获取body的子节点</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">&lt;list_iterator object at 0x009D0890&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;a class="aaa" href="http://www.baidu.com" id="aaa" name="aaa"&gt;百度一下&lt;/a&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;a href="http://www.baidu.com"&gt;百度一下2&lt;/a&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;h1&gt;大家好&lt;/h1&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="Xpath"><a href="#Xpath" class="headerlink" title="Xpath"></a>Xpath</h2><p>先转文档树再解析  需要lxml包，lxml 是第三方的html解析库，在对HTML进行解析的时候，使用xpath语法。xpath语法通过路径的形式在HTML中选择节点，使用pip3 install lxml安装。</p>
+<p>首先引入，然后再写一个简单的网页。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line">html = <span class="string">"""</span></span><br><span class="line"><span class="string">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="string">&lt;html lang="en"&gt;</span></span><br><span class="line"><span class="string">&lt;head&gt;</span></span><br><span class="line"><span class="string">    &lt;meta charset="UTF-8" /&gt;</span></span><br><span class="line"><span class="string">    &lt;title&gt;lxml中xpath的用法&lt;/title&gt;</span></span><br><span class="line"><span class="string">&lt;/head&gt;</span></span><br><span class="line"><span class="string">&lt;body&gt;</span></span><br><span class="line"><span class="string">    &lt;ul&gt;</span></span><br><span class="line"><span class="string">        &lt;li&gt;&lt;a href="https://www.baidu.com" class="first_a"&gt;百度一下&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">        &lt;li&gt;&lt;a href="https://mail.qq.com" id="second_a"&gt;QQ邮箱&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">        &lt;li&gt;&lt;a href="https://www.taobao.com"&gt;淘宝网&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">        &lt;li&gt;</span></span><br><span class="line"><span class="string">            &lt;a href="https://pypi.python.org" class="first_a"&gt;Python官网&lt;/a&gt;</span></span><br><span class="line"><span class="string">            &lt;a href="https://pypi.python.org" class="second_a"&gt;Python&lt;/a&gt;</span></span><br><span class="line"><span class="string">        &lt;/li&gt;</span></span><br><span class="line"><span class="string">    &lt;/ul&gt;</span></span><br><span class="line"><span class="string">    &lt;p class="one"&gt;first_p_tag&lt;/p&gt;</span></span><br><span class="line"><span class="string">    &lt;p id="second"&gt;second_p_tag&lt;/p&gt;</span></span><br><span class="line"><span class="string">    &lt;div class="one"&gt;</span></span><br><span class="line"><span class="string">        first_div_tag</span></span><br><span class="line"><span class="string">        &lt;p class="first second third"&gt;11111111&lt;/p&gt;</span></span><br><span class="line"><span class="string">        &lt;a href="#"&gt;22222222&lt;/a&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 把html字符串转etree对象</span></span><br><span class="line">html = etree.HTML(html)</span><br></pre></td></tr></table></figure>
+<h3 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h3><p><strong>常用且重要</strong></p>
+<p>/表示从文档顶层开始匹配，/body/ul/li</p>
+<p>//表示匹配标签，目标标签可能有多级父节点。</p>
+<p>搜索a标签 ，返回列表，每一项是元素对象。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(html.xpath(<span class="string">'//a'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt;&gt;&gt; 打印结果</span></span><br><span class="line"><span class="comment"># [&lt;Element a at 0xa46440&gt;, &lt;Element a at 0xa46418&gt;, &lt;Element a at 0xa463f0&gt;, &lt;Element a at 0xa463c8&gt;, &lt;Element a at 0xa463a0&gt;, &lt;Element a at 0xa460d0&gt;]</span></span><br></pre></td></tr></table></figure>
+<p>提取标签属性值 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(html.xpath(<span class="string">'//a/@href'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt;&gt;&gt; 打印结果</span></span><br><span class="line"><span class="comment"># ['https://www.baidu.com', 'https://mail.qq.com', 'https://www.taobao.com', 'https://pypi.python.org', 'https://pypi.python.org', '#']</span></span><br></pre></td></tr></table></figure>
+<p>获取标签内容，//标签/text()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(html.xpath(<span class="string">'//a/text()'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt;&gt;&gt; 打印结果</span></span><br><span class="line"><span class="comment"># ['百度一下', 'QQ邮箱', '淘宝网', 'Python官网', 'Python', '22222222']</span></span><br></pre></td></tr></table></figure>
+<p>查找时根据属性限制标签 ，待查标签[@属性名=属性值]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(html.xpath(<span class="string">'//ul/li/a[@id="second_a"]/text()'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt;&gt;&gt; 打印结果</span></span><br><span class="line"><span class="comment"># ['QQ邮箱']</span></span><br></pre></td></tr></table></figure>
+<p>获取ul里的最后一个li标签里第一个a标签里的文本。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">res = html.xpath(<span class="string">'//ul/li[last()]'</span>)</span><br><span class="line">print(res[<span class="number">0</span>])</span><br><span class="line">res1 = res[<span class="number">0</span>].xpath(<span class="string">'a[@class="first_a"]/text()'</span>)</span><br><span class="line">print(res1[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt;&gt;&gt; 打印结果</span></span><br><span class="line"><span class="comment"># Python官网</span></span><br></pre></td></tr></table></figure>
+<p>其他不常用的</p>
+<ul>
+<li>包含条件:contains(@class, “class值”) 适合没有id，name属性有class属性的情<code>print(html.xpath(&#39;//div[@class=&quot;one&quot;]/p[contains(@class, &quot;first&quot;)]/text()&#39;))</code></li>
+<li>查询下一级节点，省略中间的层级<code>print(html.xpath(&#39;//ul//a[@class=&quot;first_a&quot;]/text()&#39;))</code></li>
+<li>根据css语法查找，最后一个节点<code>print(html.xpath(&#39;//ul/li[last()]&#39;))</code></li>
+</ul>
+<hr>
+<p><strong>重点用Xpath</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/解析网页/" rel="tag"><i class="fa fa-tag"></i> 解析网页</a>
+          
+            <a href="/tags/爬虫/" rel="tag"><i class="fa fa-tag"></i> 爬虫</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/19/django学习5-表单/" rel="next" title="django学习5-表单">
+                <i class="fa fa-chevron-left"></i> django学习5-表单
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/abc.jpg" alt="王政">
+            
+              <p class="site-author-name" itemprop="name">王政</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="260641084" target="_blank" title="qq">
+                      
+                        <i class="fa fa-fw fa-qq"></i>qq</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="260641084@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hexo.io/zh-cn/" title="hexo" target="_blank">hexo</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#BeautifuleSoup"><span class="nav-number">1.</span> <span class="nav-text">BeautifuleSoup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">1.2.</span> <span class="nav-text">语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Xpath"><span class="nav-number">2.</span> <span class="nav-text">Xpath</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-1"><span class="nav-number">2.1.</span> <span class="nav-text">语法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+  <div class="powered-by">python是世界上最好的语言</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">S-sherlock &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next"></a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
