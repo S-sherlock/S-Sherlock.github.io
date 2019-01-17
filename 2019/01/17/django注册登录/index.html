@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="基础,python,类,">
+  <meta name="keywords" content="django,web开发,web框架,">
 
 
 
@@ -81,18 +81,20 @@
 
 
 
-<meta name="description" content="引题：生活例子。手机类，OPPO手机类、华为手机类看做是手机类里的对象；但oppo手机也可以称作一个类，这个类下又包含find系列、R系列类，R系列类又包含某某具体型号对象。类有包含、继承的关系。 首先我们写两个类 12345678910111213141516171819202122232425262728class Teacher():    def __init__(self, name,">
-<meta name="keywords" content="基础,python,类">
+<meta name="description" content="前言用django框架做一个注册登录的表单，一个比较小的项目。 前期工作 创建项目  cd到项目文件夹，在项目文件夹下输入命令django-admin startproject login 来创建一个名为login的项目。 cd到我们创建的项目下输入python manage.py startapp myLogin 。  这个时候我们的目录应该如下：   在命令行输入python manage.p">
+<meta name="keywords" content="django,web开发,web框架">
 <meta property="og:type" content="article">
-<meta property="og:title" content="类的继承">
-<meta property="og:url" content="http://yoursite.com/2018/11/30/类的继承/index.html">
+<meta property="og:title" content="django注册登录">
+<meta property="og:url" content="http://yoursite.com/2019/01/17/django注册登录/index.html">
 <meta property="og:site_name" content="博客">
-<meta property="og:description" content="引题：生活例子。手机类，OPPO手机类、华为手机类看做是手机类里的对象；但oppo手机也可以称作一个类，这个类下又包含find系列、R系列类，R系列类又包含某某具体型号对象。类有包含、继承的关系。 首先我们写两个类 12345678910111213141516171819202122232425262728class Teacher():    def __init__(self, name,">
+<meta property="og:description" content="前言用django框架做一个注册登录的表单，一个比较小的项目。 前期工作 创建项目  cd到项目文件夹，在项目文件夹下输入命令django-admin startproject login 来创建一个名为login的项目。 cd到我们创建的项目下输入python manage.py startapp myLogin 。  这个时候我们的目录应该如下：   在命令行输入python manage.p">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-30T13:16:00.500Z">
+<meta property="og:image" content="http://yoursite.com/2019/01/17/django注册登录/1.png">
+<meta property="og:updated_time" content="2019-01-17T12:31:00.148Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="类的继承">
-<meta name="twitter:description" content="引题：生活例子。手机类，OPPO手机类、华为手机类看做是手机类里的对象；但oppo手机也可以称作一个类，这个类下又包含find系列、R系列类，R系列类又包含某某具体型号对象。类有包含、继承的关系。 首先我们写两个类 12345678910111213141516171819202122232425262728class Teacher():    def __init__(self, name,">
+<meta name="twitter:title" content="django注册登录">
+<meta name="twitter:description" content="前言用django框架做一个注册登录的表单，一个比较小的项目。 前期工作 创建项目  cd到项目文件夹，在项目文件夹下输入命令django-admin startproject login 来创建一个名为login的项目。 cd到我们创建的项目下输入python manage.py startapp myLogin 。  这个时候我们的目录应该如下：   在命令行输入python manage.p">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/17/django注册登录/1.png">
 
 
 
@@ -122,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/30/类的继承/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/17/django注册登录/">
 
 
 
 
 
-  <title>类的继承 | 博客</title>
+  <title>django注册登录 | 博客</title>
   
 
 
@@ -256,7 +258,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/30/类的继承/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/17/django注册登录/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王政">
@@ -273,7 +275,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">类的继承</h1>
+          <h1 class="post-title" itemprop="name headline">django注册登录</h1>
         
 
         <div class="post-meta">
@@ -285,8 +287,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-30T20:54:53+08:00">
-                2018-11-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-17T19:10:26+08:00">
+                2019-01-17
               </time>
             
 
@@ -308,8 +310,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
+                  <a href="/categories/django/" itemprop="url" rel="index">
+                    <span itemprop="name">django</span>
                   </a>
                 </span>
 
@@ -345,14 +347,67 @@
       
 
       
-        <p><strong>引题</strong>：生活例子。手机类，OPPO手机类、华为手机类看做是手机类里的对象；但oppo手机也可以称作一个类，这个类下又包含find系列、R系列类，R系列类又包含某某具体型号对象。类有包含、继承的关系。</p>
-<p>首先我们写两个类</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age, sex, salary, subject, address)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line">        self.sex = sex</span><br><span class="line">        self.salary = salary</span><br><span class="line">        self.subject = subject</span><br><span class="line">        self.address = address</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">say_hi</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'hello'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">go_work</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age, sex, hobby, parent_info)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line">        self.sex = sex</span><br><span class="line">        self.hobby = hobby</span><br><span class="line">        self.parent_info = parent_info</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">say_hi</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'hello'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">go_class</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<p>可以看得出来上面的代码类与相似的类有重复的属性和方法，书写麻烦。</p>
-<p>所以python引入了类继承机制，继承是类的三大特性之一。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span><span class="params">(object)</span>:</span>  <span class="comment"># 动物类</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'动物在跑'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 狗狗类 是动物类的子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span><span class="params">(Animal)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">swim</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'狗会游泳'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 猫咪类 也是动物类的子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span><span class="params">(Animal)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">crawl_tree</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'猫会爬树'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'猫灵活地跑'</span>)</span><br><span class="line"></span><br><span class="line">dog1 = Dog(<span class="string">'阿黄'</span>)</span><br><span class="line">dog1.run()</span><br><span class="line">dog1.swim()</span><br><span class="line">cat1 = Cat(<span class="string">'小花'</span>)</span><br><span class="line">cat1.run()</span><br><span class="line">cat1.crawl_tree()</span><br></pre></td></tr></table></figure>
-<p>代码的最后<code>dog1.run()</code>执行以后发现打印出来的是’动物在跑’，而run()函数是动物类中的函数。这说明子类继承父类所有的属性、方法: Dog类实例化用的是父类Animal类中的<strong>init</strong>() 和run()。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>用django框架做一个注册登录的表单，一个比较小的项目。</p>
+<h2 id="前期工作"><a href="#前期工作" class="headerlink" title="前期工作"></a>前期工作</h2><ol>
+<li><p>创建项目</p>
+<ul>
+<li>cd到项目文件夹，在项目文件夹下输入命令django-admin startproject login 来创建一个名为login的项目。</li>
+<li>cd到我们创建的项目下输入python manage.py startapp myLogin 。</li>
+</ul>
+<p>这个时候我们的目录应该如下：</p>
+<p><img src="/2019/01/17/django注册登录/1.png" alt=""></p>
+<ul>
+<li>在命令行输入python manage.py migrate迁移数据库</li>
+</ul>
+</li>
+<li><p>settings更改</p>
+<ul>
+<li><p>LANGUAGE_CODE = ‘zh-hans’  默认en-us</p>
+</li>
+<li><p>TIME_ZONE = ‘Asia/Shanghai’  默认UTC</p>
+</li>
+<li><p>数据库配置如下：mysql -u root -p验证mysql是否能启动。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改database</span></span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="comment"># 'default': &#123;</span></span><br><span class="line">    <span class="comment">#     'ENGINE': 'django.db.backends.sqlite3',</span></span><br><span class="line">    <span class="comment">#     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),</span></span><br><span class="line">    <span class="comment"># &#125;</span></span><br><span class="line">    <span class="string">'default'</span>: &#123;</span><br><span class="line">        <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.mysql'</span>,</span><br><span class="line">        <span class="string">'NAME'</span>: <span class="string">'login'</span>,  <span class="comment"># database(schema)名</span></span><br><span class="line">        <span class="string">'USER'</span>: <span class="string">'root'</span>,</span><br><span class="line">        <span class="string">'PASSWORD'</span>: <span class="string">'123'</span>,</span><br><span class="line">        <span class="string">'HOST'</span>: <span class="string">'127.0.0.1'</span>,</span><br><span class="line">        <span class="string">'PORT'</span>: <span class="string">'3306'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h2><ol>
+<li><p>在models.py中创建User类</p>
+</li>
+<li><p>在settings.py的INSTALLED_APPS中引入：’login.apps.LoginConfig’</p>
+</li>
+<li><p>迁移数据库 python manage.py migrate</p>
+<p>执行完这一步之后发现报错，这是因为缺少数据库的插件。</p>
+<p>在创建项目初始的login目录下(跟项目同名)初始化文件中也就是<code>__init__.py</code>中敲下如下代码这个问题就解决了 。</p>
+<p>千万不要找错，不要在后来创建的apps mylogin目录下的初始文件中写这个代码。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line">pymysql.install_as_MySQLdb()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后命令行，python manage.py makemigrations（这一步不能省略）之后在python manage.py migrate发现数据库多了一张表，就是我们创建的表。</p>
+</li>
+<li><p>创建管理员用户：python manage.py createsuperuser</p>
+</li>
+<li><p>运行项目，pthon manage.py runserver</p>
+</li>
+<li><p>访问domain: port/admin ，用上一步的后台账户登录.</p>
+<p>进去之后发现没有我们创建的表。</p>
+<p>所以我们需要在admin.py中把我们创建的表引入过去。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> models</span><br><span class="line">admin.site.register(models.User)</span><br></pre></td></tr></table></figure>
+<p>然后刷新一下我们的管理员后台页面。发现多了一个用户表，后面多个s是因为django默认我们创建的表是复数。</p>
+</li>
+<li><p>随便往用户表里添加一些测试用户。</p>
+</li>
+<li><p>设计路由</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 在login目录下添加一下代码</span><br><span class="line"></span><br><span class="line">from myLogin import views # 引入视图函数</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(&apos;admin/&apos;, admin.site.urls),</span><br><span class="line">    </span><br><span class="line">    path(&apos;index/&apos;, views.index),</span><br><span class="line">    path(&apos;login/&apos;, views.login),</span><br><span class="line">    path(&apos;register/&apos;, views.register),</span><br><span class="line">    path(&apos;logout/&apos;, views.logout),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开发views，在mylogin目录下创建一个templates的文件夹，创建4个文件，index.html, login.html, register.html, logout.html。</p>
+</li>
+<li><p>在views函数里编写视图函数。</p>
+</li>
+</ol>
 <hr>
+<p><strong>写到这里前期工作就结束了，接下来就是编写函数了。完整代码放到码云上。</strong></p>
+<p><a href="https://gitee.com/S-sherlock/myLogin" target="_blank" rel="noopener">django注册登录</a></p>
 
       
     </div>
@@ -370,11 +425,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/基础/" rel="tag"><i class="fa fa-tag"></i> 基础</a>
+            <a href="/tags/django/" rel="tag"><i class="fa fa-tag"></i> django</a>
           
-            <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+            <a href="/tags/web开发/" rel="tag"><i class="fa fa-tag"></i> web开发</a>
           
-            <a href="/tags/类/" rel="tag"><i class="fa fa-tag"></i> 类</a>
+            <a href="/tags/web框架/" rel="tag"><i class="fa fa-tag"></i> web框架</a>
           
         </div>
       
@@ -387,8 +442,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/30/类和对象/" rel="next" title="类和对象">
-                <i class="fa fa-chevron-left"></i> 类和对象
+              <a href="/2018/12/28/爬取京东评论/" rel="next" title="爬取京东评论">
+                <i class="fa fa-chevron-left"></i> 爬取京东评论
               </a>
             
           </div>
@@ -396,10 +451,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/01/包/" rel="prev" title="包">
-                包 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -451,8 +502,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -539,6 +599,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前期工作"><span class="nav-number">2.</span> <span class="nav-text">前期工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发"><span class="nav-number">3.</span> <span class="nav-text">开发</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
